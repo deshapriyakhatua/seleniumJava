@@ -75,13 +75,23 @@ public class DataStudio {
 
         checkbox2.click();  // RAC status checkBox
 
-        Thread.sleep(1000);
-
-        WebElement checkbox3 = checkboxes2.get(2);  // RAC status pending checkBox
-
-        checkbox3.click();  // RAC status pending checkBox
+        /////////////////////////////////////////////////////////////////////////////////////
 
         Thread.sleep(1000);
+
+        WebElement checkbox3 = checkboxes2.get(2);  // RAC status No Submission checkBox
+
+        checkbox3.click();  // RAC status No Submission checkBox
+
+        Thread.sleep(1000);
+
+        WebElement checkbox4 = checkboxes2.get(3);  // RAC status #ref checkBox
+
+        checkbox4.click();  // RAC status #ref checkBox
+
+        Thread.sleep(1000);
+
+        ///////////////////////////////////////////////////////////////////////////////////////
 
         rac.click();  // RAC Button
 
@@ -129,7 +139,7 @@ public class DataStudio {
 
         for(String stCode : studentIds){
 
-            metaBase(driver, stCode,"18280" );
+            metaBase(driver, stCode,"18166" ); //18280
             Thread.sleep(2000);
 
         }
@@ -181,9 +191,8 @@ public class DataStudio {
 
             WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);    // open submission links in new Tab
             newTab.get(link);    // open submission links in new Tab
-            Thread.sleep(50);
-            JavascriptExecutor js = (JavascriptExecutor) newTab;  // scroll page
-            js.executeScript("window.scrollTo({top: 200, behavior: 'smooth'});");  // scroll page 
+            //JavascriptExecutor js = (JavascriptExecutor) newTab;  // scroll page
+            //js.executeScript("window.scrollTo({top: 200, behavior: 'smooth'});");  // scroll page 
             Thread.sleep(5000);    // open submission links in new Tab
             newTab.close();    // open submission links in new Tab
             driver.switchTo().window(parent);    // open submission links in new Tab
@@ -207,7 +216,12 @@ public class DataStudio {
 
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSeSR4YzMfq8OjSW1mceOtrEU9dZLUNXA1bpNd54IO-wkwFMBg/viewform");   // fill form
 
+        JavascriptExecutor js = (JavascriptExecutor) driver;  // scroll page
+
+        js.executeScript("window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});");  // scroll page 
+
         Thread.sleep(2000);
+
 
         WebElement email = driver.findElement(By.xpath("//input[@type='email']"));  //input email address
         email.clear();  //input email address
@@ -222,10 +236,6 @@ public class DataStudio {
         WebElement codingAssignmentId = inputs.get(1);  // assignment id
         codingAssignmentId.clear();  //   assignment id
         codingAssignmentId.sendKeys(assignId);  // assignment id
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;  // scroll page
-
-        js.executeScript("window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});");  // scroll page 
 
         Thread.sleep(4000);
 
